@@ -25,8 +25,8 @@ export const EditBodyBlock = ({ contentId, body, title }: EditContentType) => {
 	}
 
 	return (
-		<div className="flex h-full flex-1 gap-2">
-			<div className="prose min-h-0 flex-1 overflow-y-auto bg-white p-7.5">
+		<div className="flex h-full gap-5">
+			<div className="min-h-0 flex-1 list-inside overflow-y-auto bg-white p-2.5 md:p-7.5 [&>ul]:list-disc">
 				{parse(body)}
 			</div>
 			<Button
@@ -81,7 +81,7 @@ export const EditBodyForm = ({
 
 	return (
 		<form
-			className="flex h-full w-full gap-2"
+			className="flex h-full w-full gap-5"
 			onSubmit={(e) => {
 				e.preventDefault();
 				e.stopPropagation();

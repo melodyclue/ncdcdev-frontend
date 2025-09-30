@@ -24,7 +24,9 @@ export const EditTitleBlock = ({ contentId, title, body }: EditContentType) => {
 
 	return (
 		<div className="flex items-center gap-2">
-			<div className="flex-1 px-7.5 font-bold text-2xl">{title}</div>
+			<div className="flex-1 px-4 font-bold text-xl md:px-7.5 md:text-2xl">
+				{title}
+			</div>
 			<Button
 				icon="edit"
 				text="Edit"
@@ -77,7 +79,7 @@ const EditTitleForm = ({
 
 	return (
 		<form
-			className="flex gap-2"
+			className="flex flex-col gap-5 md:flex-row"
 			onSubmit={(e) => {
 				e.preventDefault();
 				e.stopPropagation();
@@ -95,7 +97,7 @@ const EditTitleForm = ({
 							id={field.name}
 							name={field.name}
 							onChange={(e) => field.handleChange(e.target.value)}
-							className="w-full rounded-lg border border-primary bg-white px-7.5 py-0.75 font-bold text-2xl focus:outline-none"
+							className="w-full rounded-lg border border-primary bg-white px-4 py-0.75 font-bold text-xl focus:outline-none md:px-7.5 md:text-2xl"
 						/>
 						{field.state.meta.errors.length > 0 && (
 							<div>
@@ -110,7 +112,7 @@ const EditTitleForm = ({
 				)}
 			/>
 
-			<div className="flex gap-2">
+			<div className="flex gap-2 md:flex-shrink-0">
 				<form.Subscribe
 					selector={(state) => [state.isSubmitting]}
 					children={([isSubmitting]) => (

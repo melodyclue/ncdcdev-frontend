@@ -25,9 +25,9 @@ export default async function ContentPage({ params }: ContentPageProps) {
 	const contentData = await getContent();
 
 	return (
-		<div className="flex h-full flex-col px-10 py-7.5">
+		<div className="flex h-full flex-col px-4 py-4 md:px-10 md:py-7.5">
 			<div className="flex h-full flex-col rounded-lg bg-light-background">
-				<div className="flex h-full flex-col gap-5 p-7.5">
+				<div className="flex h-full flex-col gap-5 p-4 md:p-7.5">
 					<EditTitleBlock
 						contentId={contentId}
 						title={contentData.title}

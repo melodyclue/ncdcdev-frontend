@@ -12,7 +12,8 @@ export const Editor = ({ body, onUpdate }: EditorProps) => {
 	const editor = useEditor({
 		editorProps: {
 			attributes: {
-				class: "prose bg-white focus:outline-none w-full min-h-[720px] p-7.5",
+				class:
+					"[&>ul]:list-disc bg-white focus:outline-none w-full min-h-[720px] p-2.5 md:p-7.5",
 			},
 		},
 		extensions: [StarterKit],
