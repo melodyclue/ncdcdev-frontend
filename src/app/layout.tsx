@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/sonner";
 import { Sidebar } from "@/feature/sidebar";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 					<Sidebar />
 					<main className="h-full max-h-full min-w-0 flex-1 pt-14 md:ml-0 md:pt-0">
 						{children}
+						<Footer />
 					</main>
 				</div>
 				<Toaster />
