@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333333;
+  --secondary-foreground: #4D4D4D;
+
+  --primary: #4CB3F8;
+  --primary-hover: #3C8EC4;
+  --primary-pressed: #347CAB;
+  --light-background: #F5F8FA;
+
+  --muted-background: #B3B3B3;
+  --muted-hover: #999999;
+  --muted-pressed: #808080;
+  --muted-foreground: #CCCCCC;
+
+  --border: #F6F8FA;
+  --popover: #ffffff;
+  --popover-foreground: #252525;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* biome-ignore lint/suspicious/noUnknownAtRules: css variables */
+@theme {
+  --font-noto-sans-jp: var(--font-noto-sans-jp);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-light-background: var(--light-background);
+  --color-muted-background: var(--muted-background);
+  --color-muted-hover: var(--muted-hover);
+  --color-muted-pressed: var(--muted-pressed);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Tiptap Empty Paragraph */
+p:empty::after {
+    content: "\00A0";
 }
