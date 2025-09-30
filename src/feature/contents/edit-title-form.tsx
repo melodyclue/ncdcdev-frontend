@@ -23,8 +23,8 @@ export const EditTitleBlock = ({ contentId, title, body }: EditContentType) => {
 	}
 
 	return (
-		<div className="flex items-center gap-2">
-			<div className="flex-1 px-4 font-bold text-xl md:px-7.5 md:text-2xl">
+		<div className="flex items-stretch gap-5">
+			<div className="flex-1 rounded-lg border border-transparent px-4 font-bold text-xl leading-9.5 md:px-7.5 md:text-2xl">
 				{title}
 			</div>
 			<Button
@@ -79,7 +79,7 @@ const EditTitleForm = ({
 
 	return (
 		<form
-			className="flex flex-col gap-5 md:flex-row"
+			className="flex gap-5"
 			onSubmit={(e) => {
 				e.preventDefault();
 				e.stopPropagation();
@@ -89,7 +89,7 @@ const EditTitleForm = ({
 			<form.Field
 				name="title"
 				children={(field) => (
-					<div className="flex w-full flex-col gap-2">
+					<div className="flex w-full flex-col items-stretch">
 						<input
 							type="text"
 							placeholder="Title"
@@ -100,7 +100,7 @@ const EditTitleForm = ({
 							className="w-full rounded-lg border border-primary bg-white px-4 py-0.75 font-bold text-xl focus:outline-none md:px-7.5 md:text-2xl"
 						/>
 						{field.state.meta.errors.length > 0 && (
-							<div>
+							<div className="mt-2">
 								{field.state.meta.errors?.map((error) => (
 									<p key={error?.message} className="text-rose-500 text-sm">
 										{error?.message}
@@ -112,7 +112,7 @@ const EditTitleForm = ({
 				)}
 			/>
 
-			<div className="flex gap-2 md:flex-shrink-0">
+			<div className="flex gap-2.5">
 				<form.Subscribe
 					selector={(state) => [state.isSubmitting]}
 					children={([isSubmitting]) => (

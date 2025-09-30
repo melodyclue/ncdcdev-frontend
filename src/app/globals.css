@@ -40,8 +40,3 @@ body {
   color: var(--foreground);
   box-sizing: border-box;
 }
-
-/* Tiptap Empty Paragraph */
-p:empty::after {
-    content: "\00A0";
-}

@@ -1,11 +1,9 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import parse from "html-react-parser";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/button";
-import { Editor } from "@/components/editor";
 import { revalidateContent } from "@/utils/server";
 import type { EditContentType } from "@/utils/type";
 import { editBodySchema } from "@/utils/validation";
@@ -25,9 +23,9 @@ export const EditBodyBlock = ({ contentId, body, title }: EditContentType) => {
 	}
 
 	return (
-		<div className="flex h-full gap-5">
-			<div className="min-h-0 flex-1 list-inside overflow-y-auto bg-white p-2.5 md:p-7.5 [&>ul]:list-disc">
-				{parse(body)}
+		<div className="flex h-full flex-1 flex-col gap-5 md:flex-row">
+			<div className="min-h-0 flex-1 overflow-y-auto whitespace-pre-wrap break-words bg-white p-2.5 md:p-7.5">
+				{body}
 			</div>
 			<Button
 				icon="edit"
@@ -81,7 +79,7 @@ export const EditBodyForm = ({
 
 	return (
 		<form
-			className="flex h-full w-full gap-5"
+			className="flex h-full w-full flex-col gap-5 md:flex-row"
 			onSubmit={(e) => {
 				e.preventDefault();
 				e.stopPropagation();
@@ -91,7 +89,7 @@ export const EditBodyForm = ({
 			<form.Field
 				name="body"
 				children={(field) => (
-					<div className="flex h-full w-full flex-col gap-2">
+					<div className="flex h-full min-w-0 flex-1 flex-col gap-2">
 						{field.state.meta.errors.length > 0 && (
 							<div>
 								{field.state.meta.errors?.map((error) => (
@@ -101,12 +99,16 @@ export const EditBodyForm = ({
 								))}
 							</div>
 						)}
-						<Editor body={field.state.value} onUpdate={field.handleChange} />
+						<textarea
+							value={field.state.value}
+							onChange={(e) => field.handleChange(e.target.value)}
+							className="min-h-0 w-full flex-1 resize-none rounded-md bg-white p-2.5 focus:outline-none md:p-7.5"
+						/>
 					</div>
 				)}
 			/>
 
-			<div className="flex gap-2">
+			<div className="flex gap-2.5">
 				<form.Subscribe
 					selector={(state) => [state.isSubmitting]}
 					children={([isSubmitting]) => (
