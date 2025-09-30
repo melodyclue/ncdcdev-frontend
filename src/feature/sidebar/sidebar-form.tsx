@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/button";
+import { cn } from "@/utils/cn";
 import { revalidateContent, revalidateContentList } from "@/utils/server";
 import type { ContentType } from "@/utils/type";
 
@@ -86,8 +87,10 @@ export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
 				/>
 			)}
 			<div
-				className={`fixed top-0 left-0 z-50 flex h-full w-[280px] transform flex-col transition-transform duration-300 ease-in-out md:relative md:top-0 md:z-auto md:h-screen md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
-			`}
+				className={cn(
+					"fixed top-0 left-0 z-50 flex h-full w-[280px] transform flex-col border-border border-r transition-transform duration-300 ease-in-out md:relative md:top-0 md:z-auto md:h-screen md:translate-x-0",
+					isSidebarOpen ? "translate-x-0" : "-translate-x-full",
+				)}
 			>
 				<div className="flex-1 overflow-y-auto bg-white pt-7.5 pl-10">
 					<div className="flex items-center gap-2">
