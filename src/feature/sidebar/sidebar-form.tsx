@@ -10,6 +10,7 @@ import { revalidateContent, revalidateContentList } from "@/utils/server";
 import type { ContentType } from "@/utils/type";
 
 export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const router = useRouter();
 	const [isEditing, setIsEditing] = useState(false);
 
@@ -55,80 +56,113 @@ export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
 	};
 
 	return (
-		<div className="flex h-screen w-[280px] flex-col border-border border-r">
-			<div className="flex-1 overflow-y-auto pt-7.5 pl-10">
+		<>
+			<header className="fixed top-0 right-0 left-0 z-30 flex h-14 items-center justify-between bg-white px-4 shadow-sm md:hidden">
 				<div className="flex items-center gap-2">
 					<Image
 						src="/icon/logo.svg"
 						alt="Service Name"
-						width={32}
-						height={32}
+						width={24}
+						height={24}
 					/>
-					<h1 className="font-semibold text-2xl">Service Name</h1>
+					<h1 className="font-semibold text-lg">Service Name</h1>
 				</div>
-				<nav className="mt-5">
-					{contents.map((content) => {
-						if (isEditing)
-							return (
-								<div
-									key={content.id}
-									className="flex items-center gap-2.5 px-2.5 py-2.5 transition-colors hover:bg-light-background"
-								>
-									<span className="line-clamp-2 w-full">{content.title}</span>
-									<button
-										className="cursor-pointer"
-										type="button"
-										onClick={() => deleteContent(content.id)}
-									>
-										<Image
-											src="/icon/delete.svg"
-											alt="Done"
-											width={20}
-											height={20}
-										/>
-									</button>
-								</div>
-							);
 
-						return (
-							<Link
-								href={`/contents/${content.id}`}
-								key={content.id}
-								className="block px-2.5 py-2.5 transition-colors hover:bg-light-background"
-							>
-								<span className="line-clamp-2">{content.title}</span>
-							</Link>
-						);
-					})}
-				</nav>
-			</div>
+				<button
+					type="button"
+					onClick={() => setIsSidebarOpen(true)}
+					className="rounded-lg p-2 transition-colors hover:bg-light-background"
+					aria-label="Toggle menu"
+				>
+					<Image src="/icon/menu.svg" alt="Menu" width={24} height={24} />
+				</button>
+			</header>
 
-			<div className="flex justify-end bg-light-background p-2.5">
-				{isEditing ? (
-					<div className="flex w-full justify-between gap-2 pl-7.5">
-						<Button
-							icon="+"
-							text="New"
-							size="wide"
-							variant="outline"
-							onClick={() => addContent("Untitled")}
+			{isSidebarOpen && (
+				<button
+					type="button"
+					className="fixed inset-0 z-40 bg-zinc-500/50 bg-opacity-50 md:hidden"
+					onClick={() => setIsSidebarOpen(false)}
+				/>
+			)}
+			<div
+				className={`fixed top-0 left-0 z-50 flex h-full w-[280px] transform flex-col transition-transform duration-300 ease-in-out md:relative md:top-0 md:z-auto md:h-screen md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+			`}
+			>
+				<div className="flex-1 overflow-y-auto bg-white pt-7.5 pl-10">
+					<div className="flex items-center gap-2">
+						<Image
+							src="/icon/logo.svg"
+							alt="Service Name"
+							width={32}
+							height={32}
 						/>
-						<Button
-							icon="done"
-							text="Done"
-							size="wide"
-							onClick={() => setIsEditing(false)}
-						/>
+						<h1 className="font-semibold text-2xl">Service Name</h1>
 					</div>
-				) : (
-					<Button
-						icon="edit"
-						text="Edit"
-						size="wide"
-						onClick={() => setIsEditing(true)}
-					/>
-				)}
+					<nav className="mt-5 md:mt-5">
+						{contents.map((content) => {
+							if (isEditing)
+								return (
+									<div
+										key={content.id}
+										className="flex items-center gap-2.5 px-2.5 py-2.5 transition-colors hover:bg-light-background"
+									>
+										<span className="line-clamp-2 w-full">{content.title}</span>
+										<button
+											className="cursor-pointer"
+											type="button"
+											onClick={() => deleteContent(content.id)}
+										>
+											<Image
+												src="/icon/delete.svg"
+												alt="Done"
+												width={20}
+												height={20}
+											/>
+										</button>
+									</div>
+								);
+
+							return (
+								<Link
+									href={`/contents/${content.id}`}
+									key={content.id}
+									className="block px-2.5 py-2.5 transition-colors hover:bg-light-background"
+								>
+									<span className="line-clamp-2">{content.title}</span>
+								</Link>
+							);
+						})}
+					</nav>
+				</div>
+
+				<div className="flex justify-end bg-light-background p-2.5">
+					{isEditing ? (
+						<div className="flex w-full justify-between gap-2 pl-7.5">
+							<Button
+								icon="+"
+								text="New"
+								size="wide"
+								variant="outline"
+								onClick={() => addContent("Untitled")}
+							/>
+							<Button
+								icon="done"
+								text="Done"
+								size="wide"
+								onClick={() => setIsEditing(false)}
+							/>
+						</div>
+					) : (
+						<Button
+							icon="edit"
+							text="Edit"
+							size="wide"
+							onClick={() => setIsEditing(true)}
+						/>
+					)}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
