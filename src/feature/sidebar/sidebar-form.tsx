@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/button";
@@ -11,6 +11,7 @@ import { revalidateContent, revalidateContentList } from "@/utils/server";
 import type { ContentType } from "@/utils/type";
 
 export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
+	const pathname = usePathname();
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 	const router = useRouter();
 	const [isEditing, setIsEditing] = useState(false);
@@ -108,7 +109,11 @@ export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
 								return (
 									<div
 										key={content.id}
-										className="flex items-center gap-2.5 px-2.5 py-2.5 transition-colors hover:bg-light-background"
+										className={cn(
+											"flex items-center gap-2.5 px-2.5 py-2.5 transition-colors hover:bg-light-background",
+											pathname === `/contents/${content.id}` &&
+												"bg-light-background font-semibold text-primary-active",
+										)}
 									>
 										<span className="line-clamp-2 w-full">{content.title}</span>
 										<button
@@ -121,6 +126,7 @@ export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
 												alt="Done"
 												width={20}
 												height={20}
+												className="h-5 w-5"
 											/>
 										</button>
 									</div>
@@ -130,7 +136,11 @@ export const SidebarForm = ({ contents }: { contents: ContentType[] }) => {
 								<Link
 									href={`/contents/${content.id}`}
 									key={content.id}
-									className="block px-2.5 py-2.5 transition-colors hover:bg-light-background"
+									className={cn(
+										"block px-2.5 py-2.5 transition-colors hover:bg-light-background",
+										pathname === `/contents/${content.id}` &&
+											"bg-light-background font-semibold text-primary-active",
+									)}
 								>
 									<span className="line-clamp-2">{content.title}</span>
 								</Link>

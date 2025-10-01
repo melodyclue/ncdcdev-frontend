@@ -7,6 +7,7 @@
   --primary: #4CB3F8;
   --primary-hover: #3C8EC4;
   --primary-pressed: #347CAB;
+  --primary-active: #32A8F8;
   --light-background: #F5F8FA;
 
   --muted-background: #B3B3B3;
@@ -27,6 +28,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-pressed: var(--primary-pressed);
+  --color-primary-active: var(--primary-active);
   --color-light-background: var(--light-background);
   --color-muted-background: var(--muted-background);
   --color-muted-hover: var(--muted-hover);
