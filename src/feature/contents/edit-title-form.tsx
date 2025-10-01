@@ -37,7 +37,7 @@ export const EditTitleBlock = ({ contentId, title, body }: EditContentType) => {
 	);
 };
 
-const EditTitleForm = ({
+export const EditTitleForm = ({
 	contentId,
 	title,
 	body,
