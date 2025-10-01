@@ -24,7 +24,7 @@ export const EditTitleBlock = ({ contentId, title, body }: EditContentType) => {
 
 	return (
 		<div className="flex items-stretch gap-5">
-			<div className="flex-1 rounded-lg border border-transparent px-4 font-bold text-xl leading-9.5 md:px-7.5 md:text-2xl">
+			<div className="flex-1 break-all rounded-lg border border-transparent px-4 font-bold text-xl leading-9.5 md:px-7.5 md:text-2xl">
 				{title}
 			</div>
 			<Button
