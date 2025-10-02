@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/sonner";
 import { Sidebar } from "@/feature/sidebar";
 
-const _notoSansJP = Noto_Sans_JP({
+const notoSansJP = Noto_Sans_JP({
 	variable: "--font-noto-sans-jp",
 	subsets: ["latin"],
 });
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${_notoSansJP.variable} font-noto-sans-jp`}>
+			<body className={`${notoSansJP.variable} font-noto-sans-jp`}>
 				<div className="flex h-screen">
 					<Sidebar />
 					<main className="h-full max-h-full min-w-0 flex-1 pt-14 md:ml-0 md:pt-0">
